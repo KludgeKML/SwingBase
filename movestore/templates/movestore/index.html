@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>SwingBase Swing Moves Database</title>
+	<meta name="keywords" content="swing dance" />
+	<meta name="description" content="Database of swing moves" />
+	<meta name="copyright" content="KludgeCo &copy; 2013" />
+	<link rel="stylesheet" href="swingbase.css" type="text/css" media="all" title="Default styles" />
+</head>
+<body>
+
+{% if moves_list %}
+<ul>
+	{% for move in moves_list %}
+	<li><a href="/movestore/{{ move.id }}/2/">{{ move.defaultName }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>No moves in library.</p>
+{% endif %}
+
+</body>
+</html>

@@ -15,6 +15,17 @@ class VocabPair (models.Model):
 	lead = models.ForeignKey(PersonVocab, related_name='+')
 	follow = models.ForeignKey(PersonVocab, related_name='+')
 
+	def translate(self, template):
+		tagList = ['L', 'F', 'LPRO', 'FPRO', 'LPROOBJ', 'FPROOBJ', 'LPOS', 'FPOS', 'LPOSPRO', 'FPOSPRO']
+		valueList = ['Lead', 'Follow', self.lead.pronoun, self.follow.pronoun, self.lead.pronoun_obj, self.follow.pronoun_obj, self.lead.possessive, self.follow.possessive, self.lead.possessive_pronoun, self.follow.possessive_pronoun]
+		for i in range(len(tagList)):
+			role = 'lead'
+			if (i % 2 == 0):
+				role = 'follow'
+			template = template.replace('$' + tagList[i] + '$',
+				'<span class="person ' + role + '">' + valueList[i] + '</span>')
+		return template
+
 	def __unicode__(self):
 		return self.name
 
